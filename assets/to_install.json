@@ -1,0 +1,61 @@
+{
+    "pacman": [
+        "zip",
+        "unzip",
+        "imagemagick",
+        "git",
+        "wget",
+        "curl",
+        "base-devel",
+        "exfatprogs",
+        "linux-headers",
+        "dosfstools",
+        "mtools",
+
+        "hyprland",
+        "hyprlock",
+        "hypridle",
+        "waybar",
+        "wl-clipboard",
+        "slurp",
+        "grim",
+        "swappy",
+        "rofi",
+        "swww",
+        "dunst",
+        "playerctl",
+        "brightnessctl",
+        "starship",
+        "pavucontrol",
+        
+        "firefox",
+
+        "python",
+        "python-pip",
+        "nodejs",
+        "gcc",
+        "clang",
+        "rustup",
+        "jdk-openjdk",
+        "docker",
+        "docker-compose",
+        "cloudflared",
+
+
+        "fastfetch",
+        "fd",
+        "lsd",
+        "xdg-desktop-portal-gtk",
+        "xdg-desktop-portal-hyprland",
+
+        "kitty",
+        "fish"
+    ],
+    "yay": [
+        "visual-studio-code-bin",
+        "spotify"
+    ],
+    "flatpak": [
+        "com.discordapp.Discord"
+    ]
+}
