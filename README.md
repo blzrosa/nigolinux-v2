@@ -242,8 +242,8 @@ After rebooting, log in to your new Hyprland session.
     cat .ssh/id_ed25519.pub
     ```
 
-    > [!TIP]
-    > Copy the entire output (from `ssh-ed25519...` to `...domain.com`) and add it to your GitHub account under **Settings \> SSH and GPG keys \> New SSH key**.
+> [!TIP]
+> Copy the entire output (from `ssh-ed25519...` to `...domain.com`) and add it to your GitHub account under **Settings \> SSH and GPG keys \> New SSH key**.
 
 3.  **Run Post-Install Script:**
     This will clone the `nigolinux-v2` repository, install Python, and run the main setup script.
