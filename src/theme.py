@@ -1,4 +1,5 @@
 from src.utils.execute import execute_as_user
+from src.utils.install import install
 from typing import Dict
 
 SETTINGS: Dict[str, str] = {
@@ -10,5 +11,9 @@ SETTINGS: Dict[str, str] = {
 }
 
 def apply_gnome_settings() -> None:
+    install({ 
+        'pacman': ['qt6-imageformats', 'dconf', 'gsettings-desktop-schemas', 'xdg-desktop-portal-gtk',], 
+        'yay': ['catppuccin-gtk-theme-mocha', 'papirus-icon-theme', 'bibata-cursor-theme',],
+        })
     for setting, value in SETTINGS.items():
         execute_as_user(["set", "org.gnome.desktop.interface", setting, value])
