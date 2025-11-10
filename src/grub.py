@@ -5,7 +5,6 @@ from src.utils.execute import execute_as_root
 from pathlib import Path
 from typing import List, Dict
 
-
 THEME_NAME = 'nigo'
 ICON_NAME = 'white'
 THEME_DIR_BASE: Path = Path('/usr/share/grub/themes')
