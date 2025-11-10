@@ -63,7 +63,10 @@ class ProgressBar(Generic[T]):
     def progress_percentage(self) -> Optional[float]:
         total: Optional[int] = self.total_size if hasattr(self, 'total_size') else None
         if total is not None:
-            return float(self.actual_iter/total) * 100
+            if total == 0:
+                return 100.0
+            return float(self.actual_iter / total) * 100
+        return None
 
     def __get_progress_character(self, digit: int) -> str:
         if digit == 0:
