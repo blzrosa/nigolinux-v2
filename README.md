@@ -254,7 +254,7 @@ After rebooting, log in to your new Hyprland session.
     cd temp
 
     # Clone the dotfiles/setup repository
-    git clone <REPOSITORY_URL>
+    git clone https://github.com/blzrosa/nigolinux-v2.git
 
     # Enter the directory
     cd nigolinux-v2
