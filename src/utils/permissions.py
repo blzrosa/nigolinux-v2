@@ -20,7 +20,7 @@ def get_user() -> str:
     return os.getlogin()
 
 def get_sudo_user() -> str:
-    sudo_user: Optional[str] = os.getenv("SUDO_USER")
+    sudo_user: Optional[str] = os.getenv('SUDO_USER')
     if sudo_user is None:
         raise SudoError('Sudo user not found')
     return sudo_user
@@ -35,14 +35,14 @@ def ensure_root() -> None:
 def enable_lingering(user: str) -> bool:
     try:
         subprocess.run(
-            ["loginctl", "enable-linger", user],
+            ['loginctl', 'enable-linger', user],
             check=True,
             capture_output=True,
             text=True
         )
         return True
     except subprocess.CalledProcessError as e:
-        if "already exists" in e.stderr:
+        if 'already exists' in e.stderr:
             return False
         raise e
 

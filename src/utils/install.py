@@ -12,11 +12,11 @@ def install(to_install: Dict[Installer, List[str]]) -> None:
             continue
         match installer:
             case 'pacman':
-                execute_as_root(["pacman", "-S", "--needed"] + packages + ['--noconfirm'])
+                execute_as_root(['pacman', '-S', '--needed', '--noconfirm'] + packages)
             case 'yay':
-                execute_as_user(["yay", "-S", "--needed"] + packages + ['--noconfirm'])
+                execute_as_user(['yay', '-S', '--needed', '--noconfirm'] + packages)
             case 'flatpak':
-                execute_as_user(["flatpak", "install", "-y", "flathub"] + packages)
+                execute_as_user(['flatpak', 'install', '-y', 'flathub'] + packages)
             case _:
                 continue
 
@@ -26,10 +26,10 @@ def install_flatpak() -> None:
 def install_yay() -> None:
     if shutil.which('yay'):
         return None
-    temp_dir: Path = Path("/tmp/yay-install")
+    temp_dir: Path = Path('/tmp/yay-install')
     if temp_dir.exists():
         shutil.rmtree(temp_dir)
-    install({ 'pacman': ["git", "base-devel"] })
+    install({ 'pacman': ['git', 'base-devel'] })
     execute_as_user(['git', 'clone', 'https://aur.archlinux.org/yay.git', str(temp_dir)])
     original_dir: Path = Path.cwd()
     os.chdir(temp_dir)
