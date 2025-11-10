@@ -1,0 +1,71 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 24,
+	"margin-top": 3,
+	"margin-left": 5,
+    "margin-right": 5,
+
+    "modules-left": ["custom/nightcord-clock", "clock#date", "hyprland/window"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["pulseaudio", "network", "battery"],
+
+	"clock#date": {
+        "format": " {:%d-%m-%y}",
+        "tooltip": false
+    },
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "default": "",
+            "urgent": ""
+        },
+        "persistent_workspaces": {
+            "*": 5
+        }
+    },
+
+    "hyprland/window": {
+        "format": " {class}",
+        "max-length": 60,
+        "separate-outputs": true
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰖁 Muted",
+        "format-icons": {
+            "default": ["󰕾"]
+        },
+        "scroll-step": 5,
+        "on-click": "pavucontrol"
+    },
+
+    "network": {
+        "interface": "wlan*",
+        "format-wifi": "󰖩 {essid}",
+        "format-ethernet": "󰖩 {ipaddr}/{cidr}",
+        "format-disconnected": "󰖩 Desconectado",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "on-click": "nm-connection-editor"
+    },
+    
+    "custom/nightcord-clock": {
+        "exec": "~/.config/waybar/scripts/nightcord-clock.sh",
+        "interval": 60,
+        "return-type": "json",
+        "tooltip": false
+    },
+
+	"battery": {
+        "states": {
+            "warning": 20,
+            "critical": 5
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰂄 {capacity}%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    }
+}
