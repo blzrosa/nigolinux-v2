@@ -1,2 +1,6 @@
-assets/sddm/ linguist-vendored
-assets/grub2/ linguist-vendored
+assets/sddm/**/* linguist-generated=true
+assets/sddm/**/* export-ignore
+
+assets/grub2/**/* linguist-generated=true
+assets/grub2/**/* export-ignore
+
