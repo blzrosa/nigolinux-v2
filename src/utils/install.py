@@ -1,8 +1,9 @@
-from execute import execute_as_root, execute_as_user
+from src.utils.execute import execute_as_root, execute_as_user
 from typing import Dict, Union, Literal, List
 import shutil
 from pathlib import Path
 import os
+from src.utils.progress import TypedProgressBar
 
 Installer = Union[Literal['pacman'], Literal['yay'], Literal['flatpak']]
 
@@ -12,15 +13,22 @@ def install(to_install: Dict[Installer, List[str]]) -> None:
             continue
         match installer:
             case 'pacman':
-                execute_as_root(['pacman', '-S', '--needed', '--noconfirm'] + packages)
+                for package in TypedProgressBar(packages, packages, 'Pacman install'):
+                    execute_as_root(['pacman', '-S', '--needed', '--noconfirm', package])
             case 'yay':
-                execute_as_user(['yay', '-S', '--needed', '--noconfirm'] + packages)
+                install_yay()
+                for package in TypedProgressBar(packages, packages, 'Yay install'):
+                    execute_as_user(['yay', '-S', '--needed', '--noconfirm', package])
             case 'flatpak':
-                execute_as_user(['flatpak', 'install', '-y', 'flathub'] + packages)
+                install_flatpak()
+                for package in TypedProgressBar(packages, packages, 'Flatpak install'):
+                    execute_as_user(['flatpak', 'install', '-y', 'flathub', package])
             case _:
                 continue
 
 def install_flatpak() -> None:
+    if shutil.which('flatpak'):
+        return None
     install({ 'pacman': ['flatpak'] })
 
 def install_yay() -> None:

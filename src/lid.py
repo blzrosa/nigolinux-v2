@@ -1,5 +1,5 @@
 import os
-from utils.permissions import ensure_root
+from src.utils.permissions import ensure_root
 from typing import List
 
 LOGIND_CONF_PATH = '/etc/systemd/logind.conf'
