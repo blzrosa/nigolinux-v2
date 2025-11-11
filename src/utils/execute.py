@@ -1,6 +1,6 @@
 import subprocess
 from typing import List
-from permissions import check_root, get_sudo_user
+from src.utils.permissions import check_root, get_sudo_user
 
 def rootify(command: List[str]) -> List[str]:
     if not check_root():

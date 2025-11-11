@@ -3,12 +3,13 @@ from pathlib import Path
 from src import ASSETS_PATH
 import shutil
 from src.utils.execute import execute_as_user
+from src.utils.install import install, Installer
 
 FONT_CONFIG_DIR: Path = Path('/etc/fonts/conf.d/')
 FONT_TEMPLATE = ASSETS_PATH / 'fontconfig.conf'
 
-FONTS_TO_INSTALL: Dict[str, List[str]] = {
-    'Pacman': [
+FONTS_TO_INSTALL: Dict[Installer, List[str]] = {
+    'pacman': [
         'noto-fonts',
         'ttf-font-awesome',
         'ttf-nerd-fonts-symbols',
@@ -26,10 +27,8 @@ FONTS_TO_INSTALL: Dict[str, List[str]] = {
     ],
 }
 
-def setup_font_config() -> None:
+def apply_fonts() -> None:
+    install(FONTS_TO_INSTALL)
     destination_file: Path = FONT_CONFIG_DIR / FONT_TEMPLATE.name
     shutil.copy(FONT_TEMPLATE, destination_file)
-
-def update_font_cache():
     execute_as_user(['fc-cache', '-fv'])
-    
