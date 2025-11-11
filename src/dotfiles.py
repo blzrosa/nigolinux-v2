@@ -1,17 +1,18 @@
-from src import HOME_PATH, ASSETS_PATH
-from src.utils.permissions import get_sudo_user
-from src.utils.permissions import add_permissions, FilePermissions
-from pathlib import Path
-from typing import List
-import shutil
 import os
 import pwd
+import shutil
+from pathlib import Path
+from typing import List
 
-SOURCE_CONFIG: Path = ASSETS_PATH / '.config'
+from src import ASSETS_PATH, HOME_PATH
+from src.utils.permissions import FilePermissions, add_permissions, get_sudo_user
+
+SOURCE_CONFIG: Path = ASSETS_PATH / ".config"
+
 
 def apply_dotfiles() -> None:
-    dest_config: Path = HOME_PATH / '.config'
-    backup_config: Path = HOME_PATH / '.config.old'
+    dest_config: Path = HOME_PATH / ".config"
+    backup_config: Path = HOME_PATH / ".config.old"
 
     if not SOURCE_CONFIG.is_dir():
         raise FileNotFoundError
@@ -28,8 +29,8 @@ def apply_dotfiles() -> None:
         for f in files:
             os.chown(os.path.join(root, f), uid, gid)
     script_dirs_patterns: List[str] = [
-        str(HOME_PATH / '.config/hypr/scripts/*.sh'),
-        str(HOME_PATH / '.config/waybar/scripts/*.sh'),
+        str(HOME_PATH / ".config/hypr/scripts/*.sh"),
+        str(HOME_PATH / ".config/waybar/scripts/*.sh"),
     ]
     add_permissions(script_dirs_patterns, (FilePermissions.execute,))
     return None

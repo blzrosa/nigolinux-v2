@@ -1,13 +1,25 @@
 import os
 import sys
-from typing import Optional, Tuple, Set, List, Literal, Union
-import tty
 import termios
+import tty
+from typing import List, Literal, Optional, Set, Tuple, Union
+
 
 def clear_console() -> None:
-    os.system('clear')
+    os.system("clear")
 
-ValidKey = Optional[Union[Literal['UP'], Literal['DOWN'], Literal['ENTER'], Literal['SPACE'], Literal['CTRL_C'], Literal['q']]]
+
+ValidKey = Optional[
+    Union[
+        Literal["UP"],
+        Literal["DOWN"],
+        Literal["ENTER"],
+        Literal["SPACE"],
+        Literal["CTRL_C"],
+        Literal["q"],
+    ]
+]
+
 
 def get_key() -> ValidKey:
     fd = sys.stdin.fileno()
@@ -15,26 +27,31 @@ def get_key() -> ValidKey:
     try:
         tty.setraw(sys.stdin.fileno())
         ch = sys.stdin.read(1)
-        
-        if ch == '\x1b':
+
+        if ch == "\x1b":
             seq = sys.stdin.read(2)
-            if seq == '[A':
-                return 'UP'
-            elif seq == '[B':
-                return 'DOWN'
-        elif ch == '\r' or ch == '\n':
-            return 'ENTER'
-        elif ch == ' ':
-            return 'SPACE'
-        elif ch == '\x03':
-            return 'CTRL_C'
-        elif ch == 'q' or ch == 'Q':
-            return 'q'
+            if seq == "[A":
+                return "UP"
+            elif seq == "[B":
+                return "DOWN"
+        elif ch == "\r" or ch == "\n":
+            return "ENTER"
+        elif ch == " ":
+            return "SPACE"
+        elif ch == "\x03":
+            return "CTRL_C"
+        elif ch == "q" or ch == "Q":
+            return "q"
         return None
     finally:
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
 
-def print_menu(current_idx: int, selected_options: Set[int], menu_options: List[Tuple[str, str]]) -> None:
+
+def print_menu(
+    current_idx: int,
+    selected_options: Set[int],
+    menu_options: List[Tuple[str, str]],
+) -> None:
     clear_console()
     print("╔════════════════════════════════╗")
     print("║     NigoLinux-v2 Installer     ║")
@@ -55,6 +72,7 @@ def print_menu(current_idx: int, selected_options: Set[int], menu_options: List[
     print("Press [Spacebar] to toggle selection.")
     print("Press [Enter] to run (on <OK> or single item).")
     print("Press [q] or [Ctrl+C] to quit.")
+
 
 def handle_quit() -> None:
     clear_console()
