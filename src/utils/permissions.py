@@ -31,7 +31,7 @@ def ensure_root() -> None:
     if not check_root():
         raise PermissionError
 
-def enable_lingering() -> bool:
+def enable_lingering() -> None:
     try:
         subprocess.run(
             ['loginctl', 'enable-linger', get_sudo_user()],
@@ -39,10 +39,10 @@ def enable_lingering() -> bool:
             capture_output=True,
             text=True
         )
-        return True
+        return None
     except subprocess.CalledProcessError as e:
         if 'already exists' in e.stderr:
-            return False
+            return None
         raise e
 
 def add_permissions(
