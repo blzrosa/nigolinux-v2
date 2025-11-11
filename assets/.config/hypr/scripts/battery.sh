@@ -3,15 +3,12 @@
 # Check device name
 BAT=$(upower -e | grep BAT | head -n1)
 
-# Get info
 PERCENT=$(upower -i $BAT | grep -E "percentage" | awk '{print $2}' | tr -d '%')
 STATE=$(upower -i $BAT | grep -E "state" | awk '{print $2}')
 
-# Charging
 if [[ "$STATE" == "charging" || "$STATE" == "fully-charged" ]]; then
   ICON="󰂄"
 else
-  # Not Charging
   if (( PERCENT == 100 )); then
     ICON="󰁹"
   elif (( PERCENT >= 90 )); then
