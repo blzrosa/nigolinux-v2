@@ -29,4 +29,4 @@ def apply_gnome_settings() -> None:
         }
     )
     for setting, value in SETTINGS.items():
-        execute_as_user(["set", "org.gnome.desktop.interface", setting, value])
+        execute_as_user(["gsettings", "set", "org.gnome.desktop.interface", setting, f'"{value}"'])

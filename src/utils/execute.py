@@ -12,9 +12,7 @@ def rootify(command: List[str]) -> List[str]:
 
 def unrootify(command: List[str]) -> List[str]:
     user: str = get_sudo_user()
-    return ["sudo", "-u", user] + " ".join(command).replace(
-        "sudo -u ", ""
-    ).replace("sudo", "").split(" ")
+    return ["sudo", "-u", user] + command
 
 
 def execute_as_root(*commands: List[str]) -> None:

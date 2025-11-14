@@ -3,7 +3,7 @@
 WALLPAPER_DIR="$HOME/.config/wallpapers/nigo"
 
 generate_entries() {
-    find "$WALLPAPER_DIR" -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.jpeg" \) | sort | while read -r file; do
+    find "$WALLPAPER_DIR" -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.jpeg" -o -name "*.webp" \) | sort | while read -r file; do
         filename_with_ext=$(basename "$file")
         display_name=${filename_with_ext%.*}
 
