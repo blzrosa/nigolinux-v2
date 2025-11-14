@@ -144,7 +144,7 @@ You are now inside your new installation. Let's configure the NVIDIA drivers and
 
     ```conf
     # Example:
-    GRUB_CMDLINE_LINUX_DEFAULT="quiet loglevel=3 nvidia_drm.modeset=1 nvme_core.default_ps_max_latency_us=0 nvidia.NVreg_DynamicPowerManagement=0 i915.enable_psr=0"
+    GRUB_CMDLINE_LINUX_DEFAULT="quiet loglevel=3 nvidia_drm.modeset=1 nvme_core.default_ps_max_latency_us=0 nvidia.NVreg_DynamicPowerManagement=0 i915.enable_psr=0 psmouse.proto=bare"
     ```
 
 3.  **Force SDDM to use X11:**
