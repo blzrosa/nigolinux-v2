@@ -16,7 +16,7 @@ def apply_dotfiles() -> None:
 
     if not SOURCE_CONFIG.is_dir():
         raise FileNotFoundError
-    if dest_config.exists() and backup_config.existis():
+    if dest_config.exists() and backup_config.exists():
         shutil.rmtree(backup_config)
     shutil.move(dest_config, backup_config)
     shutil.copytree(SOURCE_CONFIG, dest_config)
