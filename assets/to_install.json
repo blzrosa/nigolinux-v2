@@ -55,10 +55,7 @@
     ],
     "yay": [
         "visual-studio-code-bin",
-        "spotify",
-        "pywall",
-        "python-pywalfox",
-        "pjsk-cursor-theme"
+        "spotify"
     ],
     "flatpak": [
         "com.discordapp.Discord"
