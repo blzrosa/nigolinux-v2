@@ -1,0 +1,31 @@
+# ~/.config/starship.toml
+
+# Move a linha nova para baixo
+add_newline = true
+
+# Módulo de caractere (a setinha ou símbolo do prompt)
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[✗](bold red)"
+
+# Diretório
+[directory]
+style = "bold blue"  # Usa o 'blue' gerado pelo pywal
+truncation_length = 3
+truncate_to_repo = false
+
+# Git
+[git_branch]
+style = "bold purple" # Usa o 'purple' do pywal
+symbol = " "
+
+[git_status]
+style = "bold red"
+
+# Nome do pacote (Node, Rust, etc)
+[package]
+style = "bold yellow"
+
+# Duração do comando
+[cmd_duration]
+style = "bold yellow"

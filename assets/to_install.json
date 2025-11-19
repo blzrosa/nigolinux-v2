@@ -49,11 +49,16 @@
         "xdg-desktop-portal-hyprland",
 
         "kitty",
-        "fish"
+        "fish",
+
+        "neovim"
     ],
     "yay": [
         "visual-studio-code-bin",
-        "spotify"
+        "spotify",
+        "pywall",
+        "python-pywalfox",
+        "pjsk-cursor-theme"
     ],
     "flatpak": [
         "com.discordapp.Discord"

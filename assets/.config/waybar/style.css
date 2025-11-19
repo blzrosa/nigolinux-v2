@@ -1,11 +1,12 @@
-@define-color background            #281631;
+@import "theme.css";
+/*@define-color background            #281631;
 @define-color foreground            #bdb1c4;
 @define-color foreground-alt        #99A5B0;
 @define-color butterfly-empty       #545F6E;
 @define-color butterfly-occupied    #C8C8C8;
 @define-color butterfly-active      #bdb1c4;
 @define-color warning-color         #E6A25D;
-@define-color critical-color        #E06B74;
+@define-color critical-color        #E06B74;*/
 
 * {
     font-family: "SpaceMono Nerd Font", "Comic Neue", sans-serif;
