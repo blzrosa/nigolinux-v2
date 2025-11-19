@@ -52,8 +52,8 @@ window#waybar {
 
 
 #workspaces button {
-    color: @butterfly-empty;  
-    background-color: @background; 
+    color: alpha(@foreground, 0.3);
+    background-color: @background;
     padding: 0 5px;
     font-size: 18px;
     transition: all 0.0s ease-in-out;
