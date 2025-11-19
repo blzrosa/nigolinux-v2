@@ -25,37 +25,42 @@ window#waybar {
 #clock {
     background-color: @background;
     color: @foreground;
-    padding: 0 10px;
+    padding: 0 5px;
     margin: 0;
 }
 
 /* LEFT */
 #custom-nightcord-clock {
     border-radius: 12px 0 0 12px;
-    margin-left: 10px;
+    margin-left: 2px;
 }
 
 #window {
   border-radius: 0 12px 12px 0;
-  margin-right: 10px;
+  margin-right: 2px;
 }
 
 
 /* RIGHT */
 #pulseaudio {
     border-radius: 12px 0 0 12px;
+    margin-left: 2px;
 }
 
 #battery {
     border-radius: 0 12px 12px 0;
-    margin-right: 10px;
+    margin-right: 2px;
 }
+
 
 #pulseaudio:hover, 
 #network:hover, 
 #battery:hover, 
-#custom-nightcord-clock:hover {
-    background-color: alpha(@foreground, 0.1);
+#custom-nightcord-clock:hover,
+#window:hover,
+#clock:hover
+{
+    background-color: alpha(@background, 0.8);
 }
 
 /* WORKSPACES */
@@ -67,19 +72,21 @@ window#waybar {
     color: alpha(@foreground, 0.3);
     background-color: @background;
     font-size: 18px;
+    min-width: 20px;
+    padding: 0 3px 0 0;
 }
 
 #workspaces button.active {
     color: @foreground;
 }
 
-#workspaces button.persistent {
-    color: alpha(@foreground, 0.5);
+#workspaces button:hover {
+    color: @background;
+    background-color: alpha(@background, 0.8);
 }
 
-#workspaces button:hover {
-    color: alpha(@foreground, 0.7);
-    background-color: alpha(@foreground, 0.1);
+#workspaces button.persistent {
+    color: alpha(@foreground, 0.5);
 }
 
 #battery.warning {
