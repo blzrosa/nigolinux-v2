@@ -7,7 +7,7 @@ if [ -z "$WALLPAPER_IMG" ] || [ ! -f "$WALLPAPER_IMG" ]; then
     exit 1
 fi
 
-wal -i "$WALLPAPER_IMG" -n -s -t
+wal -i "$WALLPAPER_IMG" -n -s -t --backend haishoku
 
 swww img "$WALLPAPER_IMG" --transition-type outer --transition-fps 60 --transition-step 90
 

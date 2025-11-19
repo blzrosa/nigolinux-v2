@@ -8,7 +8,7 @@ return {
     config = function()
       local pywal = require("pywal")
       pywal.setup()
-      
+
       -- Aplica o tema
       vim.cmd("colorscheme pywal")
     end,
@@ -20,5 +20,13 @@ return {
     opts = function(_, opts)
       opts.options.theme = "pywal"
     end,
+  },
+
+  -- 3. Força o LazyVim a não carregar o Tokyonight automaticamente
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "pywal",
+    },
   },
 }

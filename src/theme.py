@@ -29,10 +29,12 @@ def apply_gnome_settings() -> None:
                 "xdg-desktop-portal-gtk",
                 "python-pywal", 
                 "papirus-icon-theme",
+                "python-setuptools",
             ],
             "yay": [
                 "pjsk-cursor-theme",
-                "pywalfox", 
+                "pywalfox",
+                "python-haishoku",
             ],
         }
     )
