@@ -1,31 +1,74 @@
-# ~/.config/starship.toml
-
-# Move a linha nova para baixo
 add_newline = true
 
-# Módulo de caractere (a setinha ou símbolo do prompt)
+format = """
+$directory$git_branch$git_status$c$haskell$python$nodejs$rust$golang$package
+[╚══ ](bold purple)"""
+
 [character]
-success_symbol = "[➜](bold green)"
-error_symbol = "[✗](bold red)"
+success_symbol = ""
+error_symbol = ""
 
-# Diretório
 [directory]
-style = "bold blue"  # Usa o 'blue' gerado pelo pywal
+style = "bold cyan"
+read_only = " 󰌾"
 truncation_length = 3
-truncate_to_repo = false
+truncation_symbol = "…/"
+format = "[╔═【](bold purple)[$path]($style)[】](bold purple)"
 
-# Git
 [git_branch]
-style = "bold purple" # Usa o 'purple' do pywal
-symbol = " "
+symbol = " "
+style = "bold magenta"
+format = "[on ](bold purple)[$symbol$branch]($style)"
 
 [git_status]
 style = "bold red"
+format = "[$all_status$ahead_behind]($style)"
+conflicted = " 🏳 "
+ahead = " ⇡ "
+behind = " ⇣ "
+diverged = " ⇕ "
+up_to_date = ""
+untracked = "  "
+stashed = "  "
+modified = "  "
+staged = "  "
+renamed = "  "
+deleted = "  "
 
-# Nome do pacote (Node, Rust, etc)
+[c]
+symbol = " "
+style = "bold blue"
+format = "[ via ](bold purple)[$symbol$version]($style)"
+detect_extensions = ["c", "h", "cpp", "hpp", "cc", "cxx"]
+
+[haskell]
+symbol = " "
+style = "bold magenta"
+format = "[ via ](bold purple)[$symbol$version]($style)"
+
+[python]
+symbol = "󰌠 "
+style = "bold yellow"
+format = "[ via ](bold purple)[$symbol$version]($style)"
+detect_extensions = ["py", "ipynb"]
+detect_files = ["pyproject.toml", "requirements.txt", "poetry.lock"]
+
+[nodejs]
+symbol = " "
+style = "bold green"
+format = "[ via ](bold purple)[$symbol$version]($style)"
+
+[rust]
+symbol = " "
+style = "bold red"
+format = "[ via ](bold purple)[$symbol$version]($style)"
+
+[golang]
+symbol = " "
+style = "bold blue"
+format = "[ via ](bold purple)[$symbol$version]($style)"
+
 [package]
-style = "bold yellow"
-
-# Duração do comando
-[cmd_duration]
-style = "bold yellow"
+symbol = "󰏗 "
+style = "bold white"
+format = "[ via ](bold purple)[$symbol$version]($style)"
