@@ -7,12 +7,12 @@ from src import ASSETS_PATH
 from src.utils.execute import execute_as_root
 
 THEME_NAME = "nigo"
-ICON_NAME = "white"
+ICON_NAME = "custom"
 THEME_DIR_BASE: Path = Path("/usr/share/grub/themes")
 GRUB_CONFIG_FILE: Path = Path("/etc/default/grub")
 GRUB_ASSETS_DIR = ASSETS_PATH / "grub2"
-WALLPAPER = GRUB_ASSETS_DIR / "background.jpg"
-RESOLUTION = "1080p"
+WALLPAPER_BRUTE = GRUB_ASSETS_DIR / "background.jxl"
+RESOLUTION = "4k"
 GFX_MODES = {
     "1080p": "1920x1080",
     "2k": "2560x1440",
@@ -55,7 +55,7 @@ def apply_grub_theme() -> None:
         GRUB_ASSETS_DIR / "config" / theme_config_file,
         dest_theme_path / "theme.txt",
     )
-    shutil.copy(WALLPAPER, dest_theme_path / "background.jpg")
+    execute_as_root(["magick", str(WALLPAPER_BRUTE), "-format", "png", str(dest_theme_path / "background.png")])
     shutil.copytree(
         GRUB_ASSETS_DIR
         / "assets"
