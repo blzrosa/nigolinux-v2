@@ -5,10 +5,11 @@ from pathlib import Path
 from typing import List
 
 from src import ASSETS_PATH, HOME_PATH
+from src.utils.execute import execute_as_root
 from src.utils.permissions import FilePermissions, add_permissions, get_sudo_user
 
 SOURCE_CONFIG: Path = ASSETS_PATH / ".config"
-
+BRUTE_IMAGES = SOURCE_CONFIG / "wallpapers"
 
 def apply_dotfiles() -> None:
     dest_config: Path = HOME_PATH / ".config"
@@ -19,6 +20,7 @@ def apply_dotfiles() -> None:
     if dest_config.exists() and backup_config.exists():
         shutil.rmtree(backup_config)
     shutil.move(dest_config, backup_config)
+    execute_as_root(['mogrify', '-format', 'webp', '-define', 'webp:lossless=true', f'{BRUTE_IMAGES}/*.jxl'])
     shutil.copytree(SOURCE_CONFIG, dest_config)
     user_info = pwd.getpwnam(get_sudo_user())
     uid, gid = user_info.pw_uid, user_info.pw_gid
