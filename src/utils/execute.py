@@ -17,13 +17,13 @@ def unrootify(command: List[str]) -> List[str]:
 
 def execute_as_root(*commands: List[str]) -> None:
     for command in commands:
-        subprocess.run(
-            rootify(command), check=True, capture_output=True, text=True
-        )
+        result = subprocess.run(command, capture_output=True, text=True)
+        if result.returncode != 0:
+            raise RuntimeError(result.stderr)
 
 
 def execute_as_user(*commands: List[str]) -> None:
     for command in commands:
-        subprocess.run(
-            unrootify(command), check=True, capture_output=True, text=True
-        )
+        result = subprocess.run(command, capture_output=True, text=True)
+        if result.returncode != 0:
+            raise RuntimeError(result.stderr)
