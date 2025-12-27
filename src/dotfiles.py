@@ -6,6 +6,7 @@ from typing import List
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from src import ASSETS_PATH, HOME_PATH
+from src.utils.install import install
 from src.utils.execute import execute_as_root
 from src.utils.permissions import FilePermissions, add_permissions, get_sudo_user
 from src.utils.progress import ProgressBar
@@ -20,19 +21,18 @@ PROCESSED_IMAGES_DIR = dest_config / "wallpapers"
 def decompress_single_image(image_name: str) -> str:
     input_path = BRUTE_IMAGES_DIR / image_name
     base_name = Path(image_name).stem  # Filename without extension
-    output_path = PROCESSED_IMAGES_DIR / f'{base_name}.webp'
+    output_path = PROCESSED_IMAGES_DIR / f'{base_name}.jpeg'
     
     # Run the conversion as root
     execute_as_root([
-        "magick", str(input_path),
-        "-format", "webp", "-alpha", "off", "-define", "webp:lossless=true",
-        str(output_path)
+        "djxl", str(input_path), str(output_path)
     ])
     os.chmod(str(output_path), 0o666)
     
     return str(output_path)
 
 def decompress_images() -> None:
+    install({"pacman": ["libjxl"]})
     os.makedirs(PROCESSED_IMAGES_DIR, exist_ok=True)
     processed_bases = {Path(f).stem for f in os.listdir(PROCESSED_IMAGES_DIR)}
     brute_images = os.listdir(BRUTE_IMAGES_DIR)
