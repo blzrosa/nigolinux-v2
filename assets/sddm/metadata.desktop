@@ -1,0 +1,14 @@
+[SddmGreeterTheme]
+Name=sddm-nigo-light
+Description=A theme inspired by Nightcord at 25
+Author=blzrosa
+Website=https://github.com/blzrosa/nigolinux-v2
+License=MIT
+Type=sddm-theme
+Version=1.0
+ConfigFile=Themes/nigo_light.conf
+MainScript=Main.qml
+TranslationsDirectory=translations
+Theme-Id=sddm-nigo_light-theme
+Theme-API=2.0
+QtVersion=6
