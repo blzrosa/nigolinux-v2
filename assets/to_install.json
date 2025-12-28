@@ -54,7 +54,9 @@
     ],
     "yay": [
         "visual-studio-code-bin",
-        "spotify"
+        "spotify",
+        "spicetify-cli",
+        "spicetify-marketplace-bin"
     ],
     "flatpak": [
         "com.discordapp.Discord"

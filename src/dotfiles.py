@@ -7,7 +7,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from src import ASSETS_PATH, HOME_PATH
 from src.utils.install import install
-from src.utils.execute import execute_as_root
+from src.utils.execute import execute_as_root, execute_as_user
 from src.utils.permissions import FilePermissions, add_permissions, get_sudo_user
 from src.utils.progress import ProgressBar
 
@@ -51,6 +51,8 @@ def decompress_images() -> None:
             pass
 
 def apply_dotfiles() -> None:
+    execute_as_root(["sudo", "chmod", "a+wr", "/opt/spotify"])
+    execute_as_root(["sudo", "chmod", "a+wr", "/opt/spotify/Apps", "-R"])
     if not SOURCE_CONFIG.is_dir():
         raise FileNotFoundError
     if dest_config.exists() and backup_config.exists():
@@ -71,4 +73,5 @@ def apply_dotfiles() -> None:
         str(HOME_PATH / ".config/waybar/scripts/*.sh"),
     ]
     add_permissions(script_dirs_patterns, (FilePermissions.execute,))
+    execute_as_user(["spicetify", "backup", "apply"])
     return None
